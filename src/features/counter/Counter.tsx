@@ -95,8 +95,8 @@ const Counter = ({ classes }: CounterProps) => {
   };
   return (
     <React.Fragment>
-      <Grid container xs={12} alignItems="center" justify="center" spacing={3}>
-        <Grid item>
+      <Grid container alignItems="center" justify="center" spacing={3}>
+        <Grid item xs={2} >
           <Button
             className={classes.button}
             aria-label="Decrement value"
