@@ -11,5 +11,5 @@ test('renders learn react link', () => {
     </Provider>
   );
 
-  expect(getByText(/VAKT Global Market/i)).toBeInTheDocument();
+  expect(getByText(/Signup/i)).toBeInTheDocument();
 });

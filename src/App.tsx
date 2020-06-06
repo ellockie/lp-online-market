@@ -42,9 +42,43 @@ function AboutButton() {
 }
 
 const App = () => (
-  <Router>
-    <div>
-      <ul>
+  <div>
+    <Menu />
+    {/*
+      <Switch>
+        ({routes})
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/topics">
+          <Topics />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch> */}
+  </div>
+  // </Router>
+);
+
+export function Home() {
+  return (
+    <>
+      <h2>Home</h2>
+      <div className={styles.app}>
+        <header className={styles.appHeader}>
+          <div>VAKT Global Market</div>
+        </header>
+      </div>
+    </>
+  );
+}
+
+function Menu() {
+  return (
+    <Router>
+      {routes}
+      <ul style={{ position: "absolute" }}>
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -61,37 +95,11 @@ const App = () => (
           <Link to="/topics">Topics</Link>
         </li>
       </ul>
-
-      <Switch>
-        ({routes})
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/topics">
-          <Topics />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
-    </div>
-  </Router>
-);
-
-function Home() {
-  return (
-    <>
-      <h2>Home</h2>
-      <div className={styles.app}>
-        <header className={styles.appHeader}>
-          <div>VAKT Global Market</div>
-        </header>
-      </div>
-    </>
+    </Router>
   );
 }
 
-function About() {
+export function About() {
   return (
     <>
       <h2>About</h2>
@@ -100,7 +108,7 @@ function About() {
   );
 }
 
-function Topics() {
+export function Topics() {
   let match = useRouteMatch();
 
   return (
@@ -133,7 +141,7 @@ function Topics() {
   );
 }
 
-function Topic() {
+export function Topic() {
   let { topicId } = useParams();
   return (
     <>
