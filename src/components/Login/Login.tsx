@@ -10,14 +10,15 @@ import {
 } from "semantic-ui-react";
 
 import Logo from '../../images/VAKT-logo.png'
-import styles from "./Login.module.less";
+import styles from "./Login.module.css";
 
 const Login: React.FC = () => (
   <div className={styles.Login}>
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" color="teal" textAlign="center">
-          <Image src={Logo} style={styles.logo} /> Log-in to your account
+          <Image src={Logo} className={styles.logo}  />
+          Log-in to your account
         </Header>
         <Form size="large">
           <Segment stacked>
@@ -41,7 +42,7 @@ const Login: React.FC = () => (
           </Segment>
         </Form>
         <Message>
-          New to us? <a href="/#/signup">Sign Up</a>
+          <a href="/#/signup">Not registered?</a>
         </Message>
       </Grid.Column>
     </Grid>
