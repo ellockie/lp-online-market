@@ -1,17 +1,5 @@
 import React from "react";
-import logo from "./logo.svg";
 import Counter from "./features/counter/Counter";
-import {
-  createMuiTheme,
-  withStyles,
-  createStyles,
-  Theme,
-  WithStyles,
-  StyleRules,
-} from "@material-ui/core/styles";
-import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
-import purple from "@material-ui/core/colors/purple";
-
 import {
   HashRouter as Router,
   Switch,
@@ -23,6 +11,7 @@ import {
 } from "react-router-dom";
 import routes from "./routes/routes";
 
+import styles from "./App.module.less";
 
 function HomeButton() {
   const history = useHistory();
@@ -52,150 +41,63 @@ function AboutButton() {
   );
 }
 
+const App = () => (
+  <Router>
+    <div>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+        <li>
+          <Link to="/signup">Signup</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+        <li>
+          <Link to="/topics">Topics</Link>
+        </li>
+      </ul>
 
-
-const theme = createMuiTheme({
-  palette: {
-    primary: purple,
-    secondary: {
-      main: "#fff",
-    },
-    background: {
-      default: "#fff",
-    },
-  },
-});
-
-const styles: (theme: Theme) => StyleRules<string> = (theme) =>
-  createStyles({
-    root: {},
-    app: {
-      textAlign: "center",
-    },
-    appLogo: {
-      height: "40vmin",
-      pointerEvents: "none",
-      "@media (prefers-reduced-motion: no-preference) ": {
-        animation: "App-logo-float infinite 3s ease-in-out",
-      },
-    },
-    appHeader: {
-      minHeight: "100vh",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      fontSize: "calc(10px + 2vmin)",
-    },
-    appLink: {
-      color: "rgb(112, 76, 182)",
-    },
-  });
-
-type AppProps = {} & WithStyles<typeof styles>;
-
-const App = ({ classes }: AppProps) => (
-  <MuiThemeProvider theme={theme}>
-    <CssBaseline />
-
-    <Router>
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/topics">Topics</Link>
-          </li>
-        </ul>
-
-        <Switch>
-
-      ({routes})
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/topics">
-            <Topics />
-          </Route>
-          <Route path="/">
-            <Home classes={classes} />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  </MuiThemeProvider>
-);
-
-function Home({ classes }: AppProps) {
-  return (
-  <>
-    <h2>Home</h2>
-    <div className={classes.app}>
-      <header className={classes.appHeader}>
-        <img src={logo} className={classes.appLogo} alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className={classes.appLink}
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className={classes.appLink}
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className={classes.appLink}
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          <span>, </span>
-          <a
-            className={classes.appLink}
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-          <span>, and </span>
-          <a
-            className={classes.appLink}
-            href="https://material-ui.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Material-UI
-          </a>
-        </span>
-      </header>
+      <Switch>
+        ({routes})
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/topics">
+          <Topics />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
     </div>
-  </>
+  </Router>
 );
+
+function Home() {
+  return (
+    <>
+      <h2>Home</h2>
+      <div className={styles.app}>
+        <header className={styles.appHeader}>
+          <div>VAKT Global Market</div>
+        </header>
+      </div>
+    </>
+  );
 }
 
 function About() {
-  return <h2>About</h2>;
+  return (
+    <>
+      <h2>About</h2>
+      <Counter />
+    </>
+  );
 }
 
 function Topics() {
@@ -224,7 +126,7 @@ function Topics() {
         </Route>
         <Route path={match.path}>
           <h3>Please select a topic.</h3>
-          <HomeButton/>
+          <HomeButton />
         </Route>
       </Switch>
     </div>
@@ -236,9 +138,9 @@ function Topic() {
   return (
     <>
       <h3>Requested topic ID: {topicId}</h3>
-      <AboutButton/>
+      <AboutButton />
     </>
   );
 }
 
-export default withStyles(styles)(App);
+export default App;
