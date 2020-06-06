@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './dashboard.module.less';
+import styles from './Dashboard.module.less';
 
 const Dashboard: React.FC = () => (
   <div className={styles.dashboard} data-testid="dashboard">
