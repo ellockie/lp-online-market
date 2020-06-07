@@ -2,10 +2,10 @@ import React from "react";
 import { Route } from "react-router-dom";
 
 import { About, Topics, Home } from "../App";
-import {Login} from "../components";
-import {Signup} from "../components";
-import {Dashboard} from "../components";
-import {ThankYou} from "../components";
+import { Login } from "../components";
+import { Signup } from "../components";
+import { Dashboard } from "../components";
+import { ThankYou } from "../components";
 
 export default [
     <Route key="Home" path="/home" component={Home} />,

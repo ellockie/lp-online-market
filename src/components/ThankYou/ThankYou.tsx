@@ -5,7 +5,7 @@ import { Header, Segment } from "semantic-ui-react";
 import styles from "./ThankYou.module.css";
 
 const ThankYou: React.FC = () => {
-  const TIMEOUT: number = 7000;
+  const TIMEOUT = 7000;
   const history = useHistory();
 
   useEffect(() => {

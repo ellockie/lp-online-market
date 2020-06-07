@@ -98,7 +98,7 @@ export function About() {
 }
 
 export function Topics() {
-  let match = useRouteMatch();
+  const match = useRouteMatch();
 
   return (
     <div>
@@ -131,7 +131,7 @@ export function Topics() {
 }
 
 export function Topic() {
-  let { topicId } = useParams();
+  const { topicId } = useParams();
   return (
     <>
       <h3>Requested topic ID: {topicId}</h3>
