@@ -42,23 +42,10 @@ function AboutButton() {
 }
 
 const App = () => (
-  <div>
+  <Router>
     <Menu />
-    {/*
-      <Switch>
-        ({routes})
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/topics">
-          <Topics />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch> */}
-  </div>
-  // </Router>
+    <Switch>{routes}</Switch>
+  </Router>
 );
 
 export function Home() {
@@ -76,8 +63,7 @@ export function Home() {
 
 function Menu() {
   return (
-    <Router>
-      {routes}
+    <>
       <ul style={{ position: "absolute" }}>
         <li>
           <Link to="/">Home</Link>
@@ -92,10 +78,13 @@ function Menu() {
           <Link to="/about">About</Link>
         </li>
         <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+        <li>
           <Link to="/topics">Topics</Link>
         </li>
       </ul>
-    </Router>
+    </>
   );
 }
 

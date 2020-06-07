@@ -14,8 +14,8 @@ const Signup: React.FC = () => {
   return (
     <FrontLayout
       header="Sign up to get started"
-      message="Already registered?"
-      alternativeUrl="/#/login"
+      message="Already registered? Log in"
+      alternativeUrl="/login"
     >
       <Form.Input
         fluid

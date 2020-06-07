@@ -3,6 +3,7 @@ import { Form, Grid, Header, Image, Message, Segment } from "semantic-ui-react";
 
 import Logo from "../../images/VAKT-logo.png";
 import styles from "./FrontLayout.module.css";
+import { Link } from "react-router-dom";
 
 type LayoutProps = {
   header: string;
@@ -27,7 +28,7 @@ const FrontLayout: FunctionComponent<LayoutProps> = ({
           <Segment stacked>{children}</Segment>
         </Form>
         <Message>
-          <a href={alternativeUrl}>{message}</a>
+          <Link to={alternativeUrl}>{message}</Link>
         </Message>
       </Grid.Column>
     </Grid>
