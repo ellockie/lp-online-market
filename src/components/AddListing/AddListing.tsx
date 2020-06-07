@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './AddListing.module.less';
+import styles from './AddListing.module.css';
 
 const AddListing: React.FC = () => (
   <div className={styles.AddListing} data-testid="AddListing">

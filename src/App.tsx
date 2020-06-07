@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 import routes from "./routes/routes";
 
-import styles from "./App.module.less";
+import styles from "./App.module.css";
 
 function HomeButton() {
   const history = useHistory();

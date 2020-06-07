@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Form } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 
-import FrontLayout from "../FrontLayout/FrontLayout";
+import {FrontLayout} from "../";
 
 const Login: React.FC = () => {
   const history = useHistory();
