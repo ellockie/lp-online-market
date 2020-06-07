@@ -1,0 +1,38 @@
+.ThankYou {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.centralContainer {
+    padding: 44px !important;
+    text-align: center;
+}
+
+.bar {
+    width: 0;
+    transition: all 5s;
+    animation: pulse 5s;
+    min-width: 0 !important;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: rgb(58, 58, 58);
+    width: 0;
+  }
+  100% {
+    background-color: #00b5ad;
+    width: 100%;
+  }
+}
+
+.bar.full {
+    width: 100%;
+    transition: all 5s;
+}
+.smallHeader::before {
+    background-color: #fff0 !important;
+}

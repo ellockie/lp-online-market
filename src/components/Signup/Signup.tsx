@@ -8,7 +8,7 @@ const Signup: React.FC = () => {
   const history = useHistory();
 
   const signup = () => {
-    history.push("/login");
+    history.push("/thankyou");
   };
 
   return (
