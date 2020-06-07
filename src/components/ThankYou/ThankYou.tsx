@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
-import styles from "./ThankYou.module.css";
+import React, { useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Header, Segment } from "semantic-ui-react";
 
+import styles from "./ThankYou.module.css";
+
 const ThankYou: React.FC = () => {
-  const TIMEOUT: number = 5000;
+  const TIMEOUT: number = 7000;
   const history = useHistory();
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const ThankYou: React.FC = () => {
         <Header as="h3">Thank you for signing up!</Header>
         You'll be redirected to Login page.
         <Link to="/login" className={styles.smallHeader}>
-          Navigate now
+          Go to Login page now
         </Link>
         <div className="ui bottom attached progress">
           <div className={`bar ${styles.bar}`}></div>

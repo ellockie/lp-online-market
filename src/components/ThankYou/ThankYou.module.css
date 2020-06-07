@@ -8,17 +8,23 @@
 
 .centralContainer {
     padding: 44px !important;
+    min-height: 8rem !important;
     text-align: center;
+}
+
+.smallHeader {
+    margin-top: 1em;
+    color: teal;
 }
 
 .bar {
     width: 0;
-    transition: all 5s;
-    animation: pulse 5s;
     min-width: 0 !important;
+    animation: linearProgress 7s;
+    animation-timing-function: linear;
 }
 
-@keyframes pulse {
+@keyframes linearProgress {
   0% {
     background-color: rgb(58, 58, 58);
     width: 0;
@@ -27,12 +33,4 @@
     background-color: #00b5ad;
     width: 100%;
   }
-}
-
-.bar.full {
-    width: 100%;
-    transition: all 5s;
-}
-.smallHeader::before {
-    background-color: #fff0 !important;
 }
