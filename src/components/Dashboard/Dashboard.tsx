@@ -15,7 +15,7 @@ const Dashboard: React.FC = () => (
       as="h3"
       content="Stackable Grid"
       textAlign="center"
-      style={styles.h3}
+      className={styles.h3}
       data-testid="dashboard"
     />
     <Grid stackable>
