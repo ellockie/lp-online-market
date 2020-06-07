@@ -5,5 +5,6 @@ export { default as FrontLayout } from './FrontLayout/FrontLayout';
 export { default as ListingDetails } from './ListingDetails/ListingDetails';
 export { default as Listings } from './Listings/Listings';
 export { default as Login } from './Login/Login';
+export { default as MenuBar } from './MenuBar/MenuBar';
 export { default as Signup } from './Signup/Signup';
 export { default as ThankYou } from './ThankYou/ThankYou';
