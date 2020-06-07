@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Grid, Segment, Header } from "semantic-ui-react";
 
-import { Listings, ListingDetails, MenuBar } from "../";
+import { Listings, ListingDetails, MenuBar } from "./components";
 
 import styles from "./Dashboard.module.css";
 
