@@ -9,7 +9,15 @@ describe('<FrontLayout />', () => {
   afterEach(cleanup);
 
   test('it should mount', () => {
-    const { getByTestId } = render(<Router><FrontLayout/></Router>);
+    const { getByTestId } = render(
+        <Router>
+          <FrontLayout
+            header="testHeader"
+            message="testMessage"
+            alternativeUrl="testURL"
+          />
+        </Router>
+    );
     const frontLayout = getByTestId('FrontLayout');
 
     expect(frontLayout).toBeInTheDocument();
