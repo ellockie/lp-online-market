@@ -7,9 +7,6 @@ const MenuBar: React.FC = () => (
     <div className="item">
         <div className="ui primary button">New Listing</div>
     </div>
-    <div className="item">
-        <div className="ui button">Log-in</div>
-    </div>
 </div>
 );
 

@@ -6,28 +6,29 @@ import { Listings, ListingDetails, MenuBar } from "./components";
 import styles from "./Dashboard.module.css";
 
 const Dashboard: React.FC = () => (
-  <Container>
+  <Container fluid className={styles.container}>
     {/*
     <div className={styles.dashboard} data-testid="dashboard">
     <div class="ui celled grid">
     */}
     <Header
       as="h3"
-      content="Stackable Grid"
+      content="Listings"
       textAlign="center"
       className={styles.h3}
       data-testid="dashboard"
     />
     <Grid stackable>
       <Grid.Column width={16}>
-          <MenuBar/>
+        <MenuBar />
       </Grid.Column>
-
-      <Grid.Column width={10}>
-        <Segment><Listings/></Segment>
+      <Grid.Column width={11}>
+          <Listings />
       </Grid.Column>
-      <Grid.Column width={6}>
-        <Segment><ListingDetails/></Segment>
+      <Grid.Column width={5}>
+        <Segment>
+          <ListingDetails />
+        </Segment>
       </Grid.Column>
     </Grid>
   </Container>
