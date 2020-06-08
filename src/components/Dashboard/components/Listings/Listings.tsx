@@ -1,33 +1,13 @@
 import React from "react";
 import { Icon, Menu, Table } from "semantic-ui-react";
+import { useSelector } from "react-redux";
 
 import { Item } from "../../../../models";
 import { ItemRow } from "../";
+import { selectUserListings } from "../../../../store/listingsSlice";
 
 const Listings: React.FC = () => {
-  const items: Item[] = [
-    {
-      id: 1,
-      name: "Idzia",
-      description: "Nice product 1",
-      price: 123,
-      currency: { symbol: "GBP", rateEUR: 1 },
-    },
-    {
-      id: 2,
-      name: "Bdzia",
-      description: "Nice product 2",
-      price: 44,
-      currency: { symbol: "JPY", rateEUR: 130 },
-    },
-    {
-      id: 3,
-      name: "Min",
-      description: "Nice product 3",
-      price: 723,
-      currency: { symbol: "PLN", rateEUR: 4 },
-    },
-  ];
+  const items: Item[] = useSelector(selectUserListings);
 
   return (
     <Table celled data-testid="Listings">
