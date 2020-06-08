@@ -7,10 +7,6 @@ import styles from "./Dashboard.module.css";
 
 const Dashboard: React.FC = () => (
   <Container fluid className={styles.container}>
-    {/*
-    <div className={styles.dashboard} data-testid="dashboard">
-    <div class="ui celled grid">
-    */}
     <Header
       as="h3"
       content="Listings"
@@ -23,7 +19,7 @@ const Dashboard: React.FC = () => (
         <MenuBar />
       </Grid.Column>
       <Grid.Column width={11}>
-          <Listings />
+        <Listings />
       </Grid.Column>
       <Grid.Column width={5}>
         <Segment>

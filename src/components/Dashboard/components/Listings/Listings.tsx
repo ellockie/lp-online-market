@@ -4,7 +4,6 @@ import { Icon, Menu, Table } from "semantic-ui-react";
 import { Item } from "../../../../models";
 import { ItemRow } from "../";
 
-
 const Listings: React.FC = () => {
   const items: Item[] = [
     {
@@ -43,7 +42,7 @@ const Listings: React.FC = () => {
 
       <Table.Body>
         {items.map((item) => (
-          <ItemRow item={item} key={item.id}/>
+          <ItemRow item={item} key={item.id} />
         ))}
       </Table.Body>
 
