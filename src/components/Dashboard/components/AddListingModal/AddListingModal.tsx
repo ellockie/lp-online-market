@@ -39,7 +39,6 @@ const AddListingModal: React.FC = () => {
       currency: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
       dispatch(addListing(Object.assign({}, values, { id: 0 })));
     },
   });

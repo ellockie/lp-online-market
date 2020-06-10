@@ -1,5 +1,4 @@
 import React from "react";
-import Counter from "./features/counter/Counter";
 import {
   HashRouter as Router,
   Switch,
@@ -43,7 +42,7 @@ function AboutButton() {
 
 const App: React.FC = (): JSX.Element => (
   <Router>
-    <Menu />
+    {/* <Menu /> */}
     <Switch>{routes}</Switch>
   </Router>
 );
@@ -92,7 +91,6 @@ export function About(): JSX.Element {
   return (
     <>
       <h2>About</h2>
-      <Counter />
     </>
   );
 }
