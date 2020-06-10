@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AppThunk, RootState } from './store';
+import { RootState } from './store';
 import { Item, CurrencySymbol } from '../models';
-import data from "../data/currencies.json";
+import defaults from "../config/defaults.json";
 
 
 interface ListingsState {
@@ -33,7 +33,7 @@ const initialState: ListingsState = {
       currency: { symbol: "EUR", rateEUR: 4 },
     },
   ],
-  availableCurrencySymbols: data as CurrencySymbol[],
+  availableCurrencySymbols: defaults.AVAILABLE_CURRENCIES as CurrencySymbol[],
 };
 
 export const slice = createSlice({
