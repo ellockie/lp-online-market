@@ -1,0 +1,16 @@
+.submitButton {
+  position: absolute;
+  bottom: -86px;
+  right: -7px;
+}
+
+.hiddenButton {
+  visibility: hidden;
+}
+
+.currencyInput > div,
+.priceInput,
+.priceInput > div {
+  width: 122px !important;
+  min-width: 122px !important;
+}

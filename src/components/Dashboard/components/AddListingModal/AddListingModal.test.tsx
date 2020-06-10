@@ -1,14 +1,14 @@
 import React from 'react';
 import { cleanup, render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import AddListing from './AddListing';
+import AddListingModal from './AddListingModal';
 
-describe('<AddListing />', () => {
+describe('<AddListingModal />', () => {
   afterEach(cleanup);
 
   test('it should mount', () => {
-    const { getByTestId } = render(<AddListing />);
-    const addListing = getByTestId('AddListing');
+    const { getByTestId } = render(<AddListingModal />);
+    const addListing = getByTestId('AddListingModal');
 
     expect(addListing).toBeInTheDocument();
   });
