@@ -14,7 +14,7 @@ describe('<ItemRow />', () => {
       itemName: "Tesuto",
       description: "Tescription",
       price: 44,
-      currency: { symbol: "JPY", rateEUR: 130 },
+      currency: "JPY",
     }
     const { getByTestId } = render(<table><tbody><ItemRow item={item}/></tbody></table>);
     const itemRow = getByTestId('ItemRow');

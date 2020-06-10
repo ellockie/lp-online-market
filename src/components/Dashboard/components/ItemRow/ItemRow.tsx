@@ -24,4 +24,5 @@ const ItemRow: React.FC<ItemRowProps> = (props: ItemRowProps) => {
     </Table.Row>
   );
 };
+
 export default ItemRow;

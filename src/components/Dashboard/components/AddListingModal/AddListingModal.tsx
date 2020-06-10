@@ -58,7 +58,7 @@ const AddListingModal: React.FC = () => {
     <Modal
       as={Form}
       onSubmit={formik.handleSubmit}
-      trigger={<Button className="ui primary button">New Listing</Button>}
+      trigger={<Button className="ui primary button" data-testid="ModalOpenButton">New Listing</Button>}
       size="tiny"
       data-testid="AddListingModal"
       className={styles.AddListing}
