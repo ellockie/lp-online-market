@@ -1,24 +1,30 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Button, Modal, Form, DropdownItemProps } from "semantic-ui-react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-import { selectCurrencySymbols } from "../../../../store/listingsSlice";
+import {
+  selectCurrencySymbols,
+  addListing,
+} from "../../../../store/listingsSlice";
 import { CurrencySymbol } from "../../../../models";
 import defaults from "../../../../config/defaults.json";
 
 import styles from "./AddListingModal.module.css";
 
 const AddListingModal: React.FC = () => {
-  const [currency, setCurrency] = useState<string>(defaults.DEFAULT_CURRENCY);
+  const dispatch = useDispatch();
+  const [currency, setCurrency] = useState<CurrencySymbol>(
+    defaults.DEFAULT_CURRENCY as CurrencySymbol
+  );
 
   const formik = useFormik({
     initialValues: {
       itemName: "",
       description: "",
-      price: "",
-      currency: currency,
+      price: 100,
+      currency: currency as CurrencySymbol,
     },
     validationSchema: Yup.object({
       itemName: Yup.string()
@@ -34,6 +40,7 @@ const AddListingModal: React.FC = () => {
     }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
+      dispatch(addListing(Object.assign({}, values, { id: 0 })));
     },
   });
 
@@ -67,7 +74,7 @@ const AddListingModal: React.FC = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.itemName}
-            placeholder="Item name"
+            placeholder="Item itemName"
             width="16"
             error={
               formik.touched.itemName && formik.errors.itemName
@@ -120,8 +127,8 @@ const AddListingModal: React.FC = () => {
               value={currency}
               onChange={(ev, val) => {
                 if (val && val.value) {
-                  formik.values.currency = val.value.toString();
-                  setCurrency(val.value.toString());
+                  formik.values.currency = val.value.toString() as CurrencySymbol;
+                  setCurrency(val.value.toString() as CurrencySymbol);
                 }
               }}
               error={

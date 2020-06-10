@@ -10,16 +10,17 @@ interface ItemRowProps {
   item: Item;
 }
 
-const ItemRow: React.FC<ItemRowProps> = ({ item }) => {
-  const formattedCurrency: string = currencyFormatter(item.currency.symbol)(
+const ItemRow: React.FC<ItemRowProps> = (props: ItemRowProps) => {
+  const item: Item = props.item;
+  const formattedCurrency: string = currencyFormatter(item.currency)(
     item.price
   );
   return (
     <Table.Row data-testid="ItemRow" className={styles.ItemRow}>
-      <Table.Cell>{item.name}</Table.Cell>
+      <Table.Cell>{item.itemName}</Table.Cell>
       <Table.Cell>{item.description}</Table.Cell>
       <Table.Cell textAlign="right">{formattedCurrency}</Table.Cell>
-      <Table.Cell>{item.currency.symbol}</Table.Cell>
+      <Table.Cell>{item.currency}</Table.Cell>
     </Table.Row>
   );
 };

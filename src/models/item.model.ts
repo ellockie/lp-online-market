@@ -1,10 +1,10 @@
-import { Currency } from "./currency.model";
+import { CurrencySymbol } from "./";
 
 
 export interface Item {
   id: number;
-  name: string;
+  itemName: string;
   description: string;
   price: number;
-  currency: Currency;
+  currency: CurrencySymbol;
 }

@@ -1,1 +1,2 @@
-export * from './currencyFormatter';
+export * from "./currencyFormatter";
+export * from "./getMaxId";

@@ -11,7 +11,7 @@ describe('<ItemRow />', () => {
   test('it should mount', () => {
     const item: Item = {
       id: 4,
-      name: "Tesuto",
+      itemName: "Tesuto",
       description: "Tescription",
       price: 44,
       currency: { symbol: "JPY", rateEUR: 130 },
