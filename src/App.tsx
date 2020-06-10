@@ -60,6 +60,7 @@ export function Home(): JSX.Element {
   );
 }
 
+/*
 function Menu() {
   return (
     <>
@@ -86,6 +87,7 @@ function Menu() {
     </>
   );
 }
+*/
 
 export function About(): JSX.Element {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid, Segment, Header } from "semantic-ui-react";
+import { Container, Grid, Header } from "semantic-ui-react";
 
 import { Listings, ListingDetails, MenuBar } from "./components";
 
@@ -9,7 +9,7 @@ const Dashboard: React.FC = () => (
   <Container fluid className={styles.container}>
     <Header
       as="h3"
-      content="Listings"
+      content="Your Listings"
       textAlign="center"
       className={styles.h3}
       data-testid="dashboard"
@@ -22,9 +22,7 @@ const Dashboard: React.FC = () => (
         <Listings />
       </Grid.Column>
       <Grid.Column width={5}>
-        <Segment>
           <ListingDetails />
-        </Segment>
       </Grid.Column>
     </Grid>
   </Container>

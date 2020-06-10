@@ -90,6 +90,7 @@ export const getCurrencyRates = (amount: number): AppThunk => dispatch => {
 // in the slice file. For example: `useSelector((state: RootState) => state.listings.value)`
 export const selectUserListings = (state: RootState): Item[] =>
   state.listings.userListings;
+export const selectUserListing = (state: RootState): Item => state.listings.userListings[0];
 export const selectCurrencySymbols = (state: RootState): CurrencySymbol[] =>
   state.listings.availableCurrencySymbols;
 export const selectMaxId = (state: RootState): number => state.listings.maxId;
