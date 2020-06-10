@@ -1,9 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk, RootState } from './store';
-import { Item } from '../models';
+import { Item, CurrencySymbol } from '../models';
+import data from "../data/currencies.json";
+
 
 interface ListingsState {
   userListings: Item[];
+  availableCurrencySymbols: CurrencySymbol[];
 }
 
 const initialState: ListingsState = {
@@ -29,7 +32,8 @@ const initialState: ListingsState = {
       price: 723,
       currency: { symbol: "EUR", rateEUR: 4 },
     },
-  ]
+  ],
+  availableCurrencySymbols: data as CurrencySymbol[],
 };
 
 export const slice = createSlice({
@@ -71,5 +75,6 @@ export const getCurrencyRates = (amount: number): AppThunk => dispatch => {
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.listings.value)`
 export const selectUserListings = (state: RootState): Item[] => state.listings.userListings;
+export const selectCurrencySymbols = (state: RootState): CurrencySymbol[] => state.listings.availableCurrencySymbols;
 
 export default slice.reducer;
