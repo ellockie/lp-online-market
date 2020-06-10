@@ -41,14 +41,14 @@ function AboutButton() {
   );
 }
 
-const App = () => (
+const App: React.FC = (): JSX.Element => (
   <Router>
     <Menu />
     <Switch>{routes}</Switch>
   </Router>
 );
 
-export function Home() {
+export function Home(): JSX.Element {
   return (
     <>
       <h2>Home</h2>
@@ -88,7 +88,7 @@ function Menu() {
   );
 }
 
-export function About() {
+export function About(): JSX.Element {
   return (
     <>
       <h2>About</h2>
@@ -97,13 +97,12 @@ export function About() {
   );
 }
 
-export function Topics() {
+export function Topics(): JSX.Element {
   const match = useRouteMatch();
 
   return (
     <div>
       <h2>Topics</h2>
-
       <ul>
         <li>
           <Link to={`${match.url}/components`}>Components</Link>
@@ -112,7 +111,6 @@ export function Topics() {
           <Link to={`${match.url}/props-v-state`}>Props v. State</Link>
         </li>
       </ul>
-
       {/* The Topics page has its own <Switch> with more routes
           that build on the /topics URL path. You can think of the
           2nd <Route> here as an "index" page for all topics, or
@@ -130,7 +128,7 @@ export function Topics() {
   );
 }
 
-export function Topic() {
+export function Topic(): JSX.Element {
   const { topicId } = useParams();
   return (
     <>
