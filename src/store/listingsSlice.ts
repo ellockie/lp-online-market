@@ -8,6 +8,7 @@ interface ListingsState {
   userListings: Item[];
   availableCurrencySymbols: CurrencySymbol[];
   maxId: number;
+  selectedItem: Item | null;
 }
 
 const initialState: ListingsState = {
@@ -30,7 +31,7 @@ const initialState: ListingsState = {
     },
     {
       id: 3,
-      itemName: "Wonderful Thingy",
+      itemName: "Wonderful Thing",
       description:
         "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       price: 723,
@@ -39,10 +40,12 @@ const initialState: ListingsState = {
   ],
   availableCurrencySymbols: defaults.AVAILABLE_CURRENCIES as CurrencySymbol[],
   maxId: 0,
+  selectedItem: null
 };
 
 // sets max id
 initialState.maxId = getMaxId(initialState.userListings);
+initialState.selectedItem = initialState.userListings[0];
 
 export const slice = createSlice({
   name: "listings",
@@ -68,10 +71,13 @@ export const slice = createSlice({
         (listing) => listing.id !== action.payload
       );
     },
+    selectListing: (state, action: PayloadAction<Item>) => {
+      state.selectedItem = action.payload;
+    },
   },
 });
 
-export const { addListing, removeListing } = slice.actions;
+export const { addListing, selectListing, removeListing } = slice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
@@ -90,7 +96,7 @@ export const getCurrencyRates = (amount: number): AppThunk => dispatch => {
 // in the slice file. For example: `useSelector((state: RootState) => state.listings.value)`
 export const selectUserListings = (state: RootState): Item[] =>
   state.listings.userListings;
-export const selectUserListing = (state: RootState): Item => state.listings.userListings[0];
+export const selectUserListing = (state: RootState): Item|null => state.listings.selectedItem;
 export const selectCurrencySymbols = (state: RootState): CurrencySymbol[] =>
   state.listings.availableCurrencySymbols;
 export const selectMaxId = (state: RootState): number => state.listings.maxId;
