@@ -10,7 +10,7 @@ import {
 import styles from "./Dashboard.module.css";
 
 const Dashboard: React.FC = () => (
-  <Container fluid className={styles.container}>
+  <Container fluid className={styles.container} data-testid="dashboard">
     <Grid stackable>
       <Grid.Column width={16} className={styles.topRow}>
         <MenuBar />

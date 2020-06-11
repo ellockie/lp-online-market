@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import DataTable from "react-data-table-component";
 
 import { Item } from "../../../../models";
-import { selectUserListings, selectListing } from "../../../../store/listingsSlice";
+import {
+  selectUserListings,
+  selectListing,
+} from "../../../../store/listingsSlice";
 import { currencyFormatter } from "../../../../services";
 
 /*
@@ -45,22 +48,22 @@ const ListingsDataTable: React.FC = () => {
   const dispatch = useDispatch();
 
   const onRowClicked = (item: Item) => {
-    console.log(item);
     dispatch(selectListing(item));
   };
 
   return (
-    <DataTable
-      title="Your Listings"
-      columns={columns}
-      data={items}
-      overflowY={false}
-      // style={{ width: "100%" }}
-      striped={true}
-      highlightOnHover={true}
-      pointerOnHover={true}
-      onRowClicked={onRowClicked}
-    />
+    <span data-testid="ListingsDataTable">
+      <DataTable
+        title="Your Listings"
+        columns={columns}
+        data={items}
+        overflowY={false}
+        striped={true}
+        highlightOnHover={true}
+        pointerOnHover={true}
+        onRowClicked={onRowClicked}
+      />
+    </span>
   );
 };
 

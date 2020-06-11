@@ -31,7 +31,7 @@ describe("<AddListingModal />", () => {
         <AddListingModal />
       </Provider>
     );
-    fireEvent.click(screen.getByText("New Listing"));
+    fireEvent.click(screen.getByText("Add New Listing"));
 
     expect(screen.getByTestId("AddListingModal")).toBeInTheDocument();
   });
