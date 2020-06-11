@@ -23,6 +23,23 @@ To do:
 - fetching of Forex rates (easy, fetch and update with an appropriate action)
 - making listings editable (it's very easy to launch the existing "Add new Listing" component with initial parameters)
 
+## Screenshots
+
+- Login screen:
+
+![Login screen](./screenshots/login.png)
+
+- Listings screen:
+
+![Listings screen](./screenshots/listings.png)
+
+- Add new listing screen:
+
+![Add new listing screen](./screenshots/newListing.png)
+
+- Thank you for signing up screen:
+
+![Thank you for signing up screen](./screenshots/thankYou.png)
 ========================================================
 
 ## Available Scripts
