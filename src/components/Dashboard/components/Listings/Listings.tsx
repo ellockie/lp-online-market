@@ -14,7 +14,7 @@ const Listings: React.FC = () => {
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell width={5}>Item Name</Table.HeaderCell>
-          <Table.HeaderCell>Description</Table.HeaderCell>
+          <Table.HeaderCell width={9}>Description</Table.HeaderCell>
           <Table.HeaderCell width={1}>Price</Table.HeaderCell>
           <Table.HeaderCell width={1}>Currency</Table.HeaderCell>
         </Table.Row>
@@ -30,14 +30,11 @@ const Listings: React.FC = () => {
         <Table.Row>
           <Table.HeaderCell colSpan="4">
             <Menu floated="right" pagination>
-              <Menu.Item as="a" icon>
+              <Menu.Item as="a" icon disabled>
                 <Icon name="chevron left" />
               </Menu.Item>
               <Menu.Item as="a">1</Menu.Item>
-              <Menu.Item as="a">2</Menu.Item>
-              <Menu.Item as="a">3</Menu.Item>
-              <Menu.Item as="a">4</Menu.Item>
-              <Menu.Item as="a" icon>
+              <Menu.Item as="a" icon disabled>
                 <Icon name="chevron right" />
               </Menu.Item>
             </Menu>

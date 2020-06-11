@@ -17,10 +17,16 @@ const ItemRow: React.FC<ItemRowProps> = (props: ItemRowProps) => {
   );
   return (
     <Table.Row data-testid="ItemRow" className={styles.ItemRow}>
-      <Table.Cell>{item.itemName}</Table.Cell>
-      <Table.Cell>{item.description}</Table.Cell>
-      <Table.Cell textAlign="right">{formattedCurrency}</Table.Cell>
-      <Table.Cell>{item.currency}</Table.Cell>
+      <Table.Cell width={4} className={styles.truncate}>
+        {item.itemName}
+      </Table.Cell>
+      <Table.Cell width={10} className={styles.truncate}>
+        {item.description}
+      </Table.Cell>
+      <Table.Cell width={1} textAlign="right">
+        {formattedCurrency}
+      </Table.Cell>
+      <Table.Cell width={1}>{item.currency}</Table.Cell>
     </Table.Row>
   );
 };
