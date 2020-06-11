@@ -1,9 +1,10 @@
 .container {
     padding: 28px;
+    padding-top: 60px;
     width: 1111px !important;
 }
 .topRow {
-    margin-bottom: -26px;;
+    margin-bottom: -26px;
 }
 .hr {
     border-color: white;

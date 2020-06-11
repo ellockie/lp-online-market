@@ -3,16 +3,19 @@ import { Button, Form } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
 
 import { FrontLayout } from "../";
+import { setActiveUser } from "../../store/listingsSlice";
 
 const Login: React.FC = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const Schema = Yup.object().shape({
     email: Yup.string().email("Must be a valid email").required("Required"),
     password: Yup.string()
-      .min(8, "Must be 8 characters or more")
+      .min(4, "Must be 4 characters or more")
       .required("Required"),
   });
 
@@ -23,7 +26,7 @@ const Login: React.FC = () => {
     },
     validationSchema: Schema,
     onSubmit: (values, { resetForm }) => {
-      // dispatch(activateUser());
+      dispatch(setActiveUser(values.email));
       resetForm();
       history.push("/dashboard");
     },

@@ -19,6 +19,8 @@ const AddListingModal: React.FC = () => {
     defaults.DEFAULT_CURRENCY as CurrencySymbol
   );
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  // get currency symbols from the store
+  const currencySymbols: CurrencySymbol[] = useSelector(selectCurrencySymbols);
 
   const handleCreateButton = () => {
     setIsOpen(false);
@@ -55,8 +57,6 @@ const AddListingModal: React.FC = () => {
     },
   });
 
-  // get currency symbols from the store
-  const currencySymbols: CurrencySymbol[] = useSelector(selectCurrencySymbols);
   const currencyOptions: DropdownItemProps[] = currencySymbols.map(
     (symbol) => ({
       key: symbol,
