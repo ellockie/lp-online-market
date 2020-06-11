@@ -1,0 +1,17 @@
+.navBar {
+    position: absolute;
+    height: 43px;
+    background-color: #005656;
+    top: 0;
+    width: 100%;
+    display: flex;
+    color: #0eb5b5;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 22px;
+    box-shadow: 3px 0 6px #003333;
+}
+.ativeUser {
+    color: #bcffff;
+    padding-left: 12px;
+}

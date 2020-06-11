@@ -8,9 +8,18 @@ import {
   useParams,
   useHistory,
 } from "react-router-dom";
+
 import routes from "./routes/routes";
+import { TopBar } from "./components";
 
 import styles from "./App.module.css";
+
+const App: React.FC = (): JSX.Element => (
+  <Router>
+    <TopBar />
+    <Switch>{routes}</Switch>
+  </Router>
+);
 
 function HomeButton() {
   const history = useHistory();
@@ -40,13 +49,6 @@ function AboutButton() {
   );
 }
 
-const App: React.FC = (): JSX.Element => (
-  <Router>
-    {/* <Menu /> */}
-    <Switch>{routes}</Switch>
-  </Router>
-);
-
 export function Home(): JSX.Element {
   return (
     <>
@@ -60,34 +62,6 @@ export function Home(): JSX.Element {
   );
 }
 
-/*
-function Menu() {
-  return (
-    <>
-      <ul style={{ position: "absolute" }}>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
-        <li>
-          <Link to="/signup">Signup</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-        <li>
-          <Link to="/dashboard">Dashboard</Link>
-        </li>
-        <li>
-          <Link to="/topics">Topics</Link>
-        </li>
-      </ul>
-    </>
-  );
-}
-*/
 
 export function About(): JSX.Element {
   return (
@@ -101,7 +75,7 @@ export function Topics(): JSX.Element {
   const match = useRouteMatch();
 
   return (
-    <div>
+    <div className={styles.navBar}>
       <h2>Topics</h2>
       <ul>
         <li>
