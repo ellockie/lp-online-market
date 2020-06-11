@@ -1,12 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { cleanup, render } from '@testing-library/react';
 import { HashRouter as Router } from 'react-router-dom';
 
 import Login from './Login';
+import { store } from '../../store/store';
 
 
-it('It should mount', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Router><Login/></Router>, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('<Login />', () => {
+  afterEach(cleanup);
+
+  test('it should mount', () => {
+    const { getByTestId } = render(<Provider store={store}><Router><Login /></Router></Provider>);
+    const login = getByTestId('Login');
+
+    expect(login).toBeInTheDocument();
+  });
 });

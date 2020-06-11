@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Form, Grid, Header, Image, Message, Segment } from "semantic-ui-react";
+import { Grid, Header, Image, Message, Segment } from "semantic-ui-react";
 
 import Logo from "../../images/VAKT-logo.png";
 import styles from "./FrontLayout.module.css";
