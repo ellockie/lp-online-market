@@ -24,9 +24,7 @@ const FrontLayout: FunctionComponent<LayoutProps> = ({
           <Image src={Logo} className={styles.logo} />
           {header}
         </Header>
-        <Form size="large">
-          <Segment stacked>{children}</Segment>
-        </Form>
+        <Segment stacked>{children}</Segment>
         <Message>
           <Link to={alternativeUrl}>{message}</Link>
         </Message>
