@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Modal, Form, DropdownItemProps } from "semantic-ui-react";
+import {
+  Button,
+  Modal,
+  Form,
+  DropdownItemProps,
+} from "semantic-ui-react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
@@ -18,6 +23,18 @@ const AddListingModal: React.FC = () => {
   const [currency, setCurrency] = useState<CurrencySymbol>(
     defaults.DEFAULT_CURRENCY as CurrencySymbol
   );
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const handleCreateButton = () => {
+    setIsOpen(false);
+  };
+  const onDismiss = (
+    event: React.MouseEvent<HTMLElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    setIsOpen(false);
+    formik.resetForm();
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -38,8 +55,10 @@ const AddListingModal: React.FC = () => {
         .required("Required"),
       currency: Yup.string().required("Required"),
     }),
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       dispatch(addListing(Object.assign({}, values, { id: 0 })));
+      handleCreateButton();
+      resetForm();
     },
   });
 
@@ -53,14 +72,27 @@ const AddListingModal: React.FC = () => {
     })
   );
 
+  const closeButton = () => (
+    <Button
+      onClick={() => setIsOpen(true)}
+      className="ui primary button"
+      data-testid="ModalOpenButton"
+    >
+      Add New Listing
+    </Button>
+  );
+
   return (
     <Modal
       as={Form}
       onSubmit={formik.handleSubmit}
-      trigger={<Button className="ui primary button" data-testid="ModalOpenButton">New Listing</Button>}
+      trigger={closeButton()}
       size="tiny"
       data-testid="AddListingModal"
       className={styles.AddListing}
+      closeIcon
+      onClose={onDismiss}
+      open={isOpen}
     >
       <Modal.Header>Add New Listing</Modal.Header>
       <Modal.Content>
@@ -73,7 +105,7 @@ const AddListingModal: React.FC = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.itemName}
-            placeholder="Item itemName"
+            placeholder="Item name"
             width="16"
             error={
               formik.touched.itemName && formik.errors.itemName
@@ -85,7 +117,7 @@ const AddListingModal: React.FC = () => {
             id="description"
             name="description"
             label="Description"
-            placeholder="Product description..."
+            placeholder="Product description"
             rows="3"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -141,7 +173,7 @@ const AddListingModal: React.FC = () => {
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
-        &nbsp;
+        <Button onClick={onDismiss}>Dismiss</Button>
         <Button primary type="submit">
           Submit
         </Button>
