@@ -1,28 +1,27 @@
 import React from "react";
-import { Container, Grid, Header } from "semantic-ui-react";
+import { Container, Grid } from "semantic-ui-react";
 
-import { Listings, ListingDetails, MenuBar } from "./components";
+import {
+  ListingDetails,
+  MenuBar,
+  ListingsDataTable,
+} from "./components";
 
 import styles from "./Dashboard.module.css";
 
 const Dashboard: React.FC = () => (
   <Container fluid className={styles.container}>
-    <Header
-      as="h3"
-      content="Your Listings"
-      textAlign="center"
-      className={styles.h3}
-      data-testid="dashboard"
-    />
     <Grid stackable>
-      <Grid.Column width={16}>
+      <Grid.Column width={16} className={styles.topRow}>
         <MenuBar />
+        <hr className={styles.hr}/>
       </Grid.Column>
+
       <Grid.Column width={11}>
-        <Listings />
+        <ListingsDataTable />
       </Grid.Column>
       <Grid.Column width={5}>
-          <ListingDetails />
+        <ListingDetails />
       </Grid.Column>
     </Grid>
   </Container>

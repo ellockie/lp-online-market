@@ -6,10 +6,9 @@ import styles from './MenuBar.module.css';
 
 
 const MenuBar: React.FC = () => (
-  <div className={["ui menu", styles.MenuBar].join(" ")} data-testid="MenuBar">
-    <div className="item">
+  <div className={styles.MenuBar} data-testid="MenuBar">
         <AddListingModal/>
-    </div>
+    {/* <div className="item"></div> */}
 </div>
 );
 
