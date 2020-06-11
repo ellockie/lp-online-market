@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  Button,
-  Modal,
-  Form,
-  DropdownItemProps,
-} from "semantic-ui-react";
+import { Button, Modal, Form, DropdownItemProps } from "semantic-ui-react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
@@ -28,13 +23,22 @@ const AddListingModal: React.FC = () => {
   const handleCreateButton = () => {
     setIsOpen(false);
   };
-  const onDismiss = (
-    event: React.MouseEvent<HTMLElement, MouseEvent>
-  ) => {
+  const onDismiss = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     event.preventDefault();
     setIsOpen(false);
     formik.resetForm();
   };
+
+  const Schema = Yup.object().shape({
+    itemName: Yup.string()
+      .min(4, "Must be 4 characters or more")
+      .required("Required"),
+    description: Yup.string()
+      .min(10, "Must be 10 characters or more")
+      .required("Required"),
+    price: Yup.number().min(0.01, "Must be at least 0.01").required("Required"),
+    currency: Yup.string().required("Required"),
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -43,18 +47,7 @@ const AddListingModal: React.FC = () => {
       price: 100,
       currency: currency as CurrencySymbol,
     },
-    validationSchema: Yup.object({
-      itemName: Yup.string()
-        .min(4, "Must be 4 characters or more")
-        .required("Required"),
-      description: Yup.string()
-        .min(10, "Must be 10 characters or more")
-        .required("Required"),
-      price: Yup.number()
-        .min(0.01, "Must be at least 0.01")
-        .required("Required"),
-      currency: Yup.string().required("Required"),
-    }),
+    validationSchema: Schema,
     onSubmit: (values, { resetForm }) => {
       dispatch(addListing(Object.assign({}, values, { id: 0 })));
       handleCreateButton();
@@ -75,8 +68,9 @@ const AddListingModal: React.FC = () => {
   const closeButton = () => (
     <Button
       onClick={() => setIsOpen(true)}
-      className="ui primary button"
+      className="ui button"
       data-testid="ModalOpenButton"
+      color="teal"
     >
       Add New Listing
     </Button>
@@ -174,7 +168,7 @@ const AddListingModal: React.FC = () => {
       </Modal.Content>
       <Modal.Actions>
         <Button onClick={onDismiss}>Dismiss</Button>
-        <Button primary type="submit">
+        <Button type="submit" color="teal">
           Submit
         </Button>
       </Modal.Actions>
