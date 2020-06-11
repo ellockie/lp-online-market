@@ -9,7 +9,7 @@ interface ListingsState {
   availableCurrencySymbols: CurrencySymbol[];
   maxId: number;
   selectedListing: Item | null;
-  users: User[];
+  registeredUsers: User[];
   activeUser: string | null;
 }
 
@@ -43,7 +43,7 @@ const initialState: ListingsState = {
   availableCurrencySymbols: defaults.AVAILABLE_CURRENCIES as CurrencySymbol[],
   maxId: 0,
   selectedListing: null,
-  users: [],
+  registeredUsers: [],
   activeUser: null,
 };
 
@@ -80,7 +80,7 @@ export const slice = createSlice({
       state.selectedListing = action.payload;
     },
     registerUser: (state, action: PayloadAction<User>) => {
-      state.users.push(action.payload);
+      state.registeredUsers.push(action.payload);
     },
     setActiveUser: (state, action: PayloadAction<string>) => {
       state.activeUser = action.payload;
@@ -119,5 +119,7 @@ export const selectCurrencySymbols = (state: RootState): CurrencySymbol[] =>
   state.listings.availableCurrencySymbols;
 export const selectActiveUser = (state: RootState): string | null =>
   state.listings.activeUser;
+export const selectRegisteredUsers = (state: RootState): User[] =>
+  state.listings.registeredUsers;
 
 export default slice.reducer;

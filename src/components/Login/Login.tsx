@@ -1,16 +1,19 @@
-import React from "react";
-import { Button, Form } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Button, Form, Message } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { FrontLayout } from "../";
-import { setActiveUser } from "../../store/listingsSlice";
+import { setActiveUser, selectRegisteredUsers } from "../../store/listingsSlice";
+import { User } from "../../models";
 
 const Login: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const [wrongCredentials, setWrongCredentials] = useState<boolean>(false);
+  const registeredUsers: User[] = useSelector(selectRegisteredUsers);
 
   const Schema = Yup.object().shape({
     email: Yup.string().email("Must be a valid email").required("Required"),
@@ -19,6 +22,21 @@ const Login: React.FC = () => {
       .required("Required"),
   });
 
+  const areCredentialsValid = (values: User) => {
+      const user = registeredUsers
+        .find(registeredUser => values.email === registeredUser.email);
+      if(!user) {
+        console.log("wrong email");
+        return false;
+      }
+      if (values.password !== user.password) {
+        console.log("wrong password");
+        return false;
+      }
+      return true;
+
+  }
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -26,6 +44,11 @@ const Login: React.FC = () => {
     },
     validationSchema: Schema,
     onSubmit: (values, { resetForm }) => {
+      setWrongCredentials(false);
+      if (!areCredentialsValid(values)) {
+        setWrongCredentials(true);
+        return;
+      }
       dispatch(setActiveUser(values.email));
       resetForm();
       history.push("/dashboard");
@@ -82,6 +105,21 @@ const Login: React.FC = () => {
         >
           Login
         </Button>
+        {wrongCredentials && (
+          <Message>
+            <Message.Header style={{ color: "red" }}>
+              Wrong email or password
+            </Message.Header>
+            <small>
+              <p>
+                Please signup to create an account
+                <br />
+                <b>Note:</b> The changes in this application are not persisted
+                yet (neither LocalStorage nor backend database)
+              </p>
+            </small>
+          </Message>
+        )}
       </Form>
     </FrontLayout>
   );
