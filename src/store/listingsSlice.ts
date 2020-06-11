@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
-import { Item, CurrencySymbol } from "../models";
+import { Item, CurrencySymbol, User } from "../models";
 import defaults from "../config/defaults.json";
 import { getMaxId } from "../services";
 
@@ -8,7 +8,9 @@ interface ListingsState {
   userListings: Item[];
   availableCurrencySymbols: CurrencySymbol[];
   maxId: number;
-  selectedItem: Item | null;
+  selectedListing: Item | null;
+  users: User[];
+  activeUser: string | null;
 }
 
 const initialState: ListingsState = {
@@ -40,13 +42,15 @@ const initialState: ListingsState = {
   ],
   availableCurrencySymbols: defaults.AVAILABLE_CURRENCIES as CurrencySymbol[],
   maxId: 0,
-  selectedItem: null
+  selectedListing: null,
+  users: [],
+  activeUser: null,
 };
 
 // sets max id
 initialState.maxId = getMaxId(initialState.userListings);
 // auto-select the first item
-initialState.selectedItem = initialState.userListings[0];
+initialState.selectedListing = initialState.userListings[0];
 
 export const slice = createSlice({
   name: "listings",
@@ -73,12 +77,24 @@ export const slice = createSlice({
       );
     },
     selectListing: (state, action: PayloadAction<Item>) => {
-      state.selectedItem = action.payload;
+      state.selectedListing = action.payload;
+    },
+    registerUser: (state, action: PayloadAction<User>) => {
+      state.users.push(action.payload);
+    },
+    setActiveUser: (state, action: PayloadAction<string>) => {
+      state.activeUser = action.payload;
     },
   },
 });
 
-export const { addListing, selectListing, removeListing } = slice.actions;
+export const {
+  addListing,
+  selectListing,
+  removeListing,
+  registerUser,
+  setActiveUser,
+} = slice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
@@ -97,9 +113,11 @@ export const getCurrencyRates = (amount: number): AppThunk => dispatch => {
 // in the slice file. For example: `useSelector((state: RootState) => state.listings.value)`
 export const selectUserListings = (state: RootState): Item[] =>
   state.listings.userListings;
-export const selectUserListing = (state: RootState): Item|null => state.listings.selectedItem;
+export const selectUserListing = (state: RootState): Item | null =>
+  state.listings.selectedListing;
 export const selectCurrencySymbols = (state: RootState): CurrencySymbol[] =>
   state.listings.availableCurrencySymbols;
-export const selectMaxId = (state: RootState): number => state.listings.maxId;
+export const selectActiveUser = (state: RootState): string | null =>
+  state.listings.activeUser;
 
 export default slice.reducer;
