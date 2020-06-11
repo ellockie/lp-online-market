@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, TableBody } from "semantic-ui-react";
+import { Table, TableBody, Label } from "semantic-ui-react";
 import { useSelector } from "react-redux";
 
 import { selectUserListing } from "../../../../store/listingsSlice";
@@ -18,24 +18,38 @@ const ListingDetails: React.FC = () => {
   return (
     <div className={styles.listingDetails} data-testid="ListingDetails">
       {item && (
-        <Table>
+        <Table className={styles.table}>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Item Details</Table.HeaderCell>
+              <Table.HeaderCell>Listing Details</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <TableBody>
             <Table.Row data-testid="ItemRow">
-              <Table.Cell>{item.itemName}</Table.Cell>
+              <Table.Cell>
+                <Label className={styles.label}>
+                  Item Name
+                </Label>
+                {item.itemName}
+              </Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>{item.description}</Table.Cell>
+              <Table.Cell>
+                <Label className={styles.label}>Description</Label>
+                {item.description}
+              </Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell textAlign="right">{formattedCurrency}</Table.Cell>
+              <Table.Cell>
+                <Label className={styles.label}>Price</Label>
+                {formattedCurrency}
+              </Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>{item.currency}</Table.Cell>
+              <Table.Cell>
+                <Label className={styles.label}>Currency</Label>
+                {item.currency}
+              </Table.Cell>
             </Table.Row>
           </TableBody>
         </Table>

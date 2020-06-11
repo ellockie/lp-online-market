@@ -1,3 +1,15 @@
 .listingDetails {
-    padding-top: 64px;
+  padding-top: 64px;
+}
+.table td {
+    padding-left: 22px !important;
+}
+.label {
+  background: none;
+  background-color: #fff0 !important;
+  text-transform: capitalize !important;
+  color: #008080a8 !important;
+  text-transform: capitalize !important;
+  display: block !important;
+  margin-left: -20px !important;
 }

@@ -45,6 +45,7 @@ const initialState: ListingsState = {
 
 // sets max id
 initialState.maxId = getMaxId(initialState.userListings);
+// auto-select the first item
 initialState.selectedItem = initialState.userListings[0];
 
 export const slice = createSlice({
