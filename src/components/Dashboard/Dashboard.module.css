@@ -3,6 +3,15 @@
     padding-top: 60px;
     width: 1111px !important;
 }
+.containerNoAuth {
+    padding: 28px;
+    padding-top: 60px;
+    width: 1111px !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    height: 444px;
+}
 .topRow {
     margin-bottom: -26px;
 }
