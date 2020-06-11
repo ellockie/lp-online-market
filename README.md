@@ -1,4 +1,29 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+## On-line market
+Supports:
+- user registration
+- user authentication (while logging in and beyond)
+- support for multitude of currencies
+
+Technologies used:
+- React
+- React Router
+- [Redux](https://redux.js.org/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- Typescript
+- Formik form validator
+- Yup schema validator
+- React Data Table Component
+- Additional ESLint validation (beyond one in un-ejected React app)
+- 19 unit tests
+- Semantic UI framework
+
+To do:
+- data persistance (very easy with local storage, can be saved / read synchronously)
+- data table showing all listings, not only user's (very similar component to the existing one needs to be created)
+- fetching of Forex rates (easy, fetch and update with an appropriate action)
+- making listings editable (it's very easy to launch the existing "Add new Listing" component with initial parameters)
+
+========================================================
 
 ## Available Scripts
 
