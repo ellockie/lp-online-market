@@ -2,7 +2,6 @@ import React from "react";
 import { Container, Grid } from "semantic-ui-react";
 import { selectActiveUser } from "../../store/listingsSlice";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
 import { ListingDetails, MenuBar, ListingsDataTable } from "./components";
 

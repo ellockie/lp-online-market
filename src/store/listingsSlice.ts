@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
-import { Item, CurrencySymbol, User } from "../models";
+import { Item, CurrencySymbol } from "../models";
 import defaults from "../config/defaults.json";
 import { getMaxId } from "../services";
 
@@ -9,7 +9,6 @@ interface ListingsState {
   availableCurrencySymbols: CurrencySymbol[];
   maxId: number;
   selectedListing: Item | null;
-  registeredUsers: User[];
   activeUser: string | null;
 }
 
@@ -43,7 +42,6 @@ const initialState: ListingsState = {
   availableCurrencySymbols: defaults.AVAILABLE_CURRENCIES as CurrencySymbol[],
   maxId: 0,
   selectedListing: null,
-  registeredUsers: [],
   activeUser: null,
 };
 
@@ -79,9 +77,6 @@ export const slice = createSlice({
     selectListing: (state, action: PayloadAction<Item>) => {
       state.selectedListing = action.payload;
     },
-    registerUser: (state, action: PayloadAction<User>) => {
-      state.registeredUsers.push(action.payload);
-    },
     setActiveUser: (state, action: PayloadAction<string>) => {
       state.activeUser = action.payload;
     },
@@ -92,7 +87,6 @@ export const {
   addListing,
   selectListing,
   removeListing,
-  registerUser,
   setActiveUser,
 } = slice.actions;
 
@@ -119,7 +113,5 @@ export const selectCurrencySymbols = (state: RootState): CurrencySymbol[] =>
   state.listings.availableCurrencySymbols;
 export const selectActiveUser = (state: RootState): string | null =>
   state.listings.activeUser;
-export const selectRegisteredUsers = (state: RootState): User[] =>
-  state.listings.registeredUsers;
 
 export default slice.reducer;

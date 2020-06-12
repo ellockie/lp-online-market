@@ -1,6 +1,6 @@
 ## On-line market
 Supports:
-- user registration
+- user registration (credentials stored locally)
 - user authentication (while logging in and beyond)
 - support for multitude of currencies
 
@@ -14,14 +14,19 @@ Technologies used:
 - Yup schema validator
 - React Data Table Component
 - Additional ESLint validation (beyond one in un-ejected React app)
-- 19 unit tests
 - Semantic UI framework
 
+Testing:
+- 19 unit tests
+
 To do:
-- data persistance (very easy with local storage, can be saved / read synchronously)
+
 - data table showing all listings, not only user's (very similar component to the existing one needs to be created)
+- listings persistence
 - fetching of Forex rates (easy, fetch and update with an appropriate action)
 - making listings editable (it's very easy to launch the existing "Add new Listing" component with initial parameters)
+- more tests, E2E
+- security
 
 ## Screenshots
 

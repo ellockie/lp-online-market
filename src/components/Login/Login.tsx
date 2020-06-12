@@ -3,17 +3,17 @@ import { Button, Form, Message } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { FrontLayout } from "../";
-import { setActiveUser, selectRegisteredUsers } from "../../store/listingsSlice";
+import { setActiveUser } from "../../store/listingsSlice";
 import { User } from "../../models";
+import { areCredentialsValid } from "../../services";
 
 const Login: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [wrongCredentials, setWrongCredentials] = useState<boolean>(false);
-  const registeredUsers: User[] = useSelector(selectRegisteredUsers);
 
   const Schema = Yup.object().shape({
     email: Yup.string().email("Must be a valid email").required("Required"),
@@ -21,21 +21,6 @@ const Login: React.FC = () => {
       .min(4, "Must be 4 characters or more")
       .required("Required"),
   });
-
-  const areCredentialsValid = (values: User) => {
-      const user = registeredUsers
-        .find(registeredUser => values.email === registeredUser.email);
-      if(!user) {
-        console.log("wrong email");
-        return false;
-      }
-      if (values.password !== user.password) {
-        console.log("wrong password");
-        return false;
-      }
-      return true;
-
-  }
 
   const formik = useFormik({
     initialValues: {
@@ -45,7 +30,7 @@ const Login: React.FC = () => {
     validationSchema: Schema,
     onSubmit: (values, { resetForm }) => {
       setWrongCredentials(false);
-      if (!areCredentialsValid(values)) {
+      if (!areCredentialsValid(values as User)) {
         setWrongCredentials(true);
         return;
       }
@@ -110,14 +95,13 @@ const Login: React.FC = () => {
             <Message.Header style={{ color: "red" }}>
               Wrong email or password
             </Message.Header>
-            <small>
-              <p>
-                Please signup to create an account
+            <p>
+              <small>
+                Please <a href="/#/signup">signup</a> to create an account
                 <br />
-                <b>Note:</b> The changes in this application are not persisted
-                yet (neither LocalStorage nor backend database)
-              </p>
-            </small>
+                <b>Note:</b> User credentials are persisted only locally
+              </small>
+            </p>
           </Message>
         )}
       </Form>
