@@ -62,6 +62,7 @@ const ListingsDataTable: React.FC = () => {
         highlightOnHover={true}
         pointerOnHover={true}
         onRowClicked={onRowClicked}
+        pagination={true}
       />
     </span>
   );
