@@ -6,6 +6,7 @@ import { Item } from "../../../../models";
 import {
   selectUserListings,
   selectListing,
+  selectUserListing,
 } from "../../../../store/listingsSlice";
 import { currencyFormatter } from "../../../../services";
 
@@ -24,7 +25,6 @@ const columns = [
     name: "Description",
     selector: "description",
     sortable: true,
-    // width: "42.5%",
     width: "388px",
   },
   {
@@ -46,10 +46,22 @@ const columns = [
 const ListingsDataTable: React.FC = () => {
   const items: Item[] = useSelector(selectUserListings);
   const dispatch = useDispatch();
+  const selectedListing: Item | null = useSelector(selectUserListing);
 
   const onRowClicked = (item: Item) => {
     dispatch(selectListing(item));
   };
+
+  const conditionalRowStyles = [
+    {
+      when: (item: Item) =>
+        selectedListing ? item.id === selectedListing.id : false,
+      style: {
+        backgroundColor: "#bfeae8 !important",
+        color: "black",
+      },
+    },
+  ];
 
   return (
     <span data-testid="ListingsDataTable">
@@ -63,6 +75,7 @@ const ListingsDataTable: React.FC = () => {
         pointerOnHover={true}
         onRowClicked={onRowClicked}
         pagination={true}
+        conditionalRowStyles={conditionalRowStyles}
       />
     </span>
   );
