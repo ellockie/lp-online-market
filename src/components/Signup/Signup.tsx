@@ -1,15 +1,16 @@
-import React from "react";
-import { Button, Form } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Button, Form, Message } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
 import FrontLayout from "../FrontLayout/FrontLayout";
 import { User } from "../../models";
-import { saveUser } from "../../services";
+import { saveUser, isUserAlreadyRegistered } from "../../services";
 
 const Signup: React.FC = () => {
   const history = useHistory();
+  const [alreadyRegistered, setAlreadyRegistered] = useState<boolean>(false);
 
   const Schema = Yup.object().shape({
     email: Yup.string().email("Must be a valid email").required("Required"),
@@ -35,6 +36,11 @@ const Signup: React.FC = () => {
     },
     validationSchema: Schema,
     onSubmit: (values, { resetForm }) => {
+      setAlreadyRegistered(false);
+      if (isUserAlreadyRegistered(values as User)) {
+        setAlreadyRegistered(true);
+        return;
+      }
       saveUser({ email: values.email, password: values.password } as User);
       resetForm();
       history.push("/thankyou");
@@ -101,6 +107,18 @@ const Signup: React.FC = () => {
         <Button color="teal" fluid size="large" type="submit">
           Sign up
         </Button>
+        {alreadyRegistered && (
+          <Message>
+            <Message.Header style={{ color: "red" }}>
+              This user is already registered
+            </Message.Header>
+            <p>
+              <small>
+                Forgot password?
+              </small>
+            </p>
+          </Message>
+        )}
       </Form>
     </FrontLayout>
   );

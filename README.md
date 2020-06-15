@@ -1,9 +1,12 @@
 ## On-line market
 Supports:
 - user registration
-- user authentication (while logging in and beyond)
-- support for multitude of currencies
-- user credentials and his/her listings are stored locally, on per-user basis
+- user authentication
+- min password length + password match requirements on signup
+- multitude of currencies (currently offered by fixer.io)
+- user credentials are stored locally
+- user listings also stored locally, on per-user basis
+- check if user is already registetered
 
 Technologies used:
 - React

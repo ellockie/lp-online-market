@@ -28,3 +28,10 @@ export const areCredentialsValid = (user: User): boolean => {
   }
   return true;
 };
+
+export const isUserAlreadyRegistered = (user: User): boolean => {
+  const registeredUsers: User[] = getUsers();
+  return registeredUsers.some(
+    (registeredUser) => user.email === registeredUser.email
+  );
+};
