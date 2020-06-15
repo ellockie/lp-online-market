@@ -29,7 +29,7 @@ const Dashboard: React.FC = () => {
         dispatch(selectListing(userListings[0]));
       }
 
-      // cleanup on unmount
+      // Cleanup on unmount
       return () => {dispatch(setListings([]));};
     }
   }, [activeUser, dispatch]);
