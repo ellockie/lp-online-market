@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import DataTable from "react-data-table-component";
 
-import { Item } from "../../../../models";
+import { Listing } from "../../../../models";
 import {
   selectUserListings,
   selectListing,
@@ -33,7 +33,7 @@ const columns = [
     sortable: true,
     right: true,
     width: "90.5px",
-    format: (item: Item) => currencyFormatter(item.currency)(item.price),
+    format: (item: Listing) => currencyFormatter(item.currency)(item.price),
   },
   {
     name: "Currency",
@@ -44,17 +44,17 @@ const columns = [
 ];
 
 const ListingsDataTable: React.FC = () => {
-  const items: Item[] = useSelector(selectUserListings);
+  const items: Listing[] = useSelector(selectUserListings);
   const dispatch = useDispatch();
-  const selectedListing: Item | null = useSelector(selectUserListing);
+  const selectedListing: Listing | null = useSelector(selectUserListing);
 
-  const onRowClicked = (item: Item) => {
+  const onRowClicked = (item: Listing) => {
     dispatch(selectListing(item));
   };
 
   const conditionalRowStyles = [
     {
-      when: (item: Item) =>
+      when: (item: Listing) =>
         selectedListing ? item.id === selectedListing.id : false,
       style: {
         backgroundColor: "#bfeae8 !important",

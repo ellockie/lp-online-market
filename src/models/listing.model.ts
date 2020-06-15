@@ -1,7 +1,7 @@
 import { CurrencySymbol } from "./";
 
 
-export interface Item {
+export interface Listing {
   id: number;
   itemName: string;
   description: string;

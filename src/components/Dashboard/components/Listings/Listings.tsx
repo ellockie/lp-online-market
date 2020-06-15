@@ -2,12 +2,12 @@ import React from "react";
 import { Icon, Menu, Table } from "semantic-ui-react";
 import { useSelector } from "react-redux";
 
-import { Item } from "../../../../models";
+import { Listing } from "../../../../models";
 import { ItemRow } from "../";
 import { selectUserListings } from "../../../../store/listingsSlice";
 
 const Listings: React.FC = () => {
-  const items: Item[] = useSelector(selectUserListings);
+  const items: Listing[] = useSelector(selectUserListings);
 
   return (
     <Table celled data-testid="Listings">

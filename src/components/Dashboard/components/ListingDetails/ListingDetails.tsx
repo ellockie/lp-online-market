@@ -3,13 +3,13 @@ import { Table, TableBody, Label } from "semantic-ui-react";
 import { useSelector } from "react-redux";
 
 import { selectUserListing } from "../../../../store/listingsSlice";
-import { Item } from "../../../../models";
+import { Listing } from "../../../../models";
 import { currencyFormatter } from "../../../../services";
 
 import styles from "./ListingDetails.module.css";
 
 const ListingDetails: React.FC = () => {
-  const item: Item | null = useSelector(selectUserListing);
+  const item: Listing | null = useSelector(selectUserListing);
 
   const formattedCurrency: string = item
     ? currencyFormatter(item.currency)(item.price)

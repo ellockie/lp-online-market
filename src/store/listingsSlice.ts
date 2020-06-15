@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
-import { Item, CurrencySymbol } from "../models";
+import { Listing, CurrencySymbol } from "../models";
 import defaults from "../config/defaults.json";
 import { getMaxId } from "../services";
 
 interface ListingsState {
-  userListings: Item[];
+  userListings: Listing[];
   availableCurrencySymbols: CurrencySymbol[];
   maxId: number;
-  selectedListing: Item | null;
+  selectedListing: Listing | null;
   activeUser: string | null;
 }
 
@@ -54,7 +54,7 @@ export const slice = createSlice({
   name: "listings",
   initialState,
   reducers: {
-    addListing: (state, action: PayloadAction<Item>) => {
+    addListing: (state, action: PayloadAction<Listing>) => {
       console.log("action:", action);
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the immer library,
@@ -74,7 +74,7 @@ export const slice = createSlice({
         (listing) => listing.id !== action.payload
       );
     },
-    selectListing: (state, action: PayloadAction<Item>) => {
+    selectListing: (state, action: PayloadAction<Listing>) => {
       state.selectedListing = action.payload;
     },
     setActiveUser: (state, action: PayloadAction<string>) => {
@@ -105,9 +105,9 @@ export const getCurrencyRates = (amount: number): AppThunk => dispatch => {
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.listings.value)`
-export const selectUserListings = (state: RootState): Item[] =>
+export const selectUserListings = (state: RootState): Listing[] =>
   state.listings.userListings;
-export const selectUserListing = (state: RootState): Item | null =>
+export const selectUserListing = (state: RootState): Listing | null =>
   state.listings.selectedListing;
 export const selectCurrencySymbols = (state: RootState): CurrencySymbol[] =>
   state.listings.availableCurrencySymbols;

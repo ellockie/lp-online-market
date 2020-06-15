@@ -3,13 +3,13 @@ import { cleanup, render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import ItemRow from './ItemRow';
-import { Item } from '../../../../models';
+import { Listing } from '../../../../models';
 
 describe('<ItemRow />', () => {
   afterEach(cleanup);
 
   test('it should mount', () => {
-    const item: Item = {
+    const item: Listing = {
       id: 4,
       itemName: "Tesuto",
       description: "Tescription",

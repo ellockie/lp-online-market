@@ -2,16 +2,16 @@ import React from "react";
 import { Table } from "semantic-ui-react";
 
 import { currencyFormatter } from "../../../../services";
-import { Item } from "../../../../models";
+import { Listing } from "../../../../models";
 
 import styles from "./ItemRow.module.css";
 
 interface ItemRowProps {
-  item: Item;
+  item: Listing;
 }
 
 const ItemRow: React.FC<ItemRowProps> = (props: ItemRowProps) => {
-  const item: Item = props.item;
+  const item: Listing = props.item;
   const formattedCurrency: string = currencyFormatter(item.currency)(
     item.price
   );
