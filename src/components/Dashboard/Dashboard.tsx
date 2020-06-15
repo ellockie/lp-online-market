@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Container, Grid } from "semantic-ui-react";
-import { selectActiveUser, setListings } from "../../store/listingsSlice";
+import { selectActiveUser, setListings, selectListing } from "../../store/listingsSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 import { ListingDetails, MenuBar, ListingsDataTable } from "./components";
@@ -24,6 +24,10 @@ const Dashboard: React.FC = () => {
         saveUserListings(userListings, activeUser);
       }
       dispatch(setListings(userListings));
+      // Preselect the first listing
+      if (userListings.length) {
+        dispatch(selectListing(userListings[0]));
+      }
 
       // cleanup on unmount
       return () => {dispatch(setListings([]));};
