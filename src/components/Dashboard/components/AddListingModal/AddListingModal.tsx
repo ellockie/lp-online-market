@@ -7,9 +7,12 @@ import { useFormik } from "formik";
 import {
   selectCurrencySymbols,
   addListing,
+  selectActiveUser,
+  selectMaxListingId,
 } from "../../../../store/listingsSlice";
-import { CurrencySymbol } from "../../../../models";
+import { CurrencySymbol, Listing } from "../../../../models";
 import defaults from "../../../../config/defaults.json";
+import { saveListing } from "../../../../services";
 
 import styles from "./AddListingModal.module.css";
 
@@ -21,6 +24,8 @@ const AddListingModal: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   // get currency symbols from the store
   const currencySymbols: CurrencySymbol[] = useSelector(selectCurrencySymbols);
+  const activeUser: string | null = useSelector(selectActiveUser);
+  const maxCurrentId: number = useSelector(selectMaxListingId);
 
   const handleCreateButton = () => {
     setIsOpen(false);
@@ -51,7 +56,11 @@ const AddListingModal: React.FC = () => {
     },
     validationSchema: Schema,
     onSubmit: (values, { resetForm }) => {
-      dispatch(addListing(Object.assign({}, values, { id: 0 })));
+      const listing: Listing = Object.assign({}, values, { id: (maxCurrentId + 1) });
+      dispatch(addListing(listing));
+      if (activeUser) {
+        saveListing(listing, activeUser);
+      }
       handleCreateButton();
       resetForm();
     },

@@ -97,7 +97,7 @@ const Login: React.FC = () => {
             </Message.Header>
             <p>
               <small>
-                Please <a href="/#/signup">signup</a> to create an account
+                Please <a href="/#/signup">sign up</a> to create an account
                 <br />
                 <b>Note:</b> User credentials are persisted only locally
               </small>

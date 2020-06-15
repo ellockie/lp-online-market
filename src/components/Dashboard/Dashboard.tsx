@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Grid } from "semantic-ui-react";
-import { selectActiveUser } from "../../store/listingsSlice";
-import { useSelector } from "react-redux";
+import { selectActiveUser, setListings } from "../../store/listingsSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 import { ListingDetails, MenuBar, ListingsDataTable } from "./components";
+import { Listing } from "../../models";
+import { getUserListings, exampleUserListings, saveUserListings } from "../../services";
 
 import styles from "./Dashboard.module.css";
 
 const Dashboard: React.FC = () => {
   const activeUser: string | null = useSelector(selectActiveUser);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (activeUser) {
+      let userListings: Listing[] = activeUser
+        ? getUserListings(activeUser)
+        : [];
+      if (!userListings.length) {
+        // Pre-populates listings, only for demo purposes
+        userListings = [...exampleUserListings];
+        saveUserListings(userListings, activeUser);
+      }
+      dispatch(setListings(userListings));
+
+      // cleanup on unmount
+      return () => {dispatch(setListings([]));};
+    }
+  }, [activeUser, dispatch]);
+
   if (!activeUser) {
     return (
       <Container
@@ -16,7 +37,8 @@ const Dashboard: React.FC = () => {
         className={styles.containerNoAuth}
         data-testid="dashboard"
       >
-        Please &nbsp; <a href="/#/login">login</a> &nbsp; / &nbsp; <a href="/#/signup">sign up</a> &nbsp; first
+        Please &nbsp; <a href="/#/login">login</a> &nbsp; / &nbsp;{" "}
+        <a href="/#/signup">sign up</a> &nbsp; first
       </Container>
     );
   }
