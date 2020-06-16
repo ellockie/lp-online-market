@@ -93,7 +93,7 @@ const AddListingModal: React.FC = () => {
       size="tiny"
       data-testid="AddListingModal"
       className={styles.AddListing}
-      closeIcon
+      dimmer={"inverted"}
       onClose={onDismiss}
       open={isOpen}
     >
