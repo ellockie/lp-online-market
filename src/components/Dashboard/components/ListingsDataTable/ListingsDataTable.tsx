@@ -9,6 +9,7 @@ import {
   selectUserListing,
 } from "../../../../store/listingsSlice";
 import { numberFormatter } from "../../../../services";
+import { Popup } from "semantic-ui-react";
 
 /*
   ==============================  DATA TABLE  ==============================
@@ -20,12 +21,26 @@ const columns = [
     selector: "itemName",
     sortable: true,
     width: "147px",
+    cell: (item: Listing) => (
+      <Popup
+        content={item.itemName}
+        trigger={<div>{item.itemName}</div>}
+        position="top center"
+      />
+    ),
   },
   {
     name: "Description",
     selector: "description",
     sortable: true,
     width: "388px",
+    cell: (item: Listing) => (
+      <Popup
+        content={item.description}
+        trigger={<div>{item.description}</div>}
+        position="top center"
+      />
+    ),
   },
   {
     name: "Price",
