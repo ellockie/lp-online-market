@@ -33,6 +33,12 @@ export const saveListing = (listing: Listing, user: string): void => {
   saveUserListings(userListings, user);
 };
 
+export const deleteListing = (listingId: number, user: string): void => {
+  let userListings: Listing[] = getUserListings(user);
+  userListings = userListings.filter(listing => listing.id !== listingId);
+  saveUserListings(userListings, user);
+};
+
 export const exampleUserListings: Listing[] = [
     {
       id: 1,

@@ -1,59 +1,99 @@
 import React from "react";
-import { Table, TableBody, Label } from "semantic-ui-react";
-import { useSelector } from "react-redux";
+import {
+  Table,
+  TableBody,
+  Label,
+  Button,
+  Icon,
+  Popup,
+} from "semantic-ui-react";
+import { useSelector, useDispatch } from "react-redux";
 
-import { selectUserListing } from "../../../../store/listingsSlice";
+import {
+  selectUserListing,
+  selectActiveUser,
+  removeListing as removeListingFromStore,
+  selectListing,
+} from "../../../../store/listingsSlice";
 import { Listing } from "../../../../models";
-import { currencyFormatter } from "../../../../services";
+import {
+  currencyFormatter,
+  deleteListing as deleteListingFromLocalStorage,
+} from "../../../../services";
 
 import styles from "./ListingDetails.module.css";
 
 const ListingDetails: React.FC = () => {
-  const item: Listing | null = useSelector(selectUserListing);
+  const listing: Listing | null = useSelector(selectUserListing);
+  const activeUser: string | null = useSelector(selectActiveUser);
+  const dispatch = useDispatch();
 
-  const formattedCurrency: string = item
-    ? currencyFormatter(item.currency)(item.price)
+  const formattedCurrency: string = listing
+    ? currencyFormatter(listing.currency)(listing.price)
     : "";
+
+  const removeListing = () => {
+    if (listing && activeUser) {
+      dispatch(removeListingFromStore(listing.id));
+      dispatch(selectListing(null));
+      deleteListingFromLocalStorage(listing.id, activeUser);
+    }
+  };
 
   return (
     <div className={styles.listingDetails} data-testid="ListingDetails">
-      {item && (
-        <Table className={styles.table}>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Listing Details</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <TableBody>
-            <Table.Row data-testid="ItemRow">
-              <Table.Cell>
-                <Label className={styles.label}>
-                  Item Name
-                </Label>
-                {item.itemName}
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>
-                <Label className={styles.label}>Description</Label>
-                {item.description}
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>
-                <Label className={styles.label}>Price</Label>
-                {formattedCurrency}
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>
-                <Label className={styles.label}>Currency</Label>
-                {item.currency}
-              </Table.Cell>
-            </Table.Row>
-          </TableBody>
-        </Table>
-      )}
+      <Table className={styles.table}>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>
+              Listing Details
+              <Button.Group floated="right">
+                <Popup
+                  content="Delete listing"
+                  trigger={
+                    <Button
+                      icon
+                      size="mini"
+                      className={styles.deleteButton}
+                      onClick={removeListing}
+                      disabled={!listing}
+                    >
+                      <Icon name="trash alternate outline" color="red" />
+                    </Button>
+                  }
+                  position="top center"
+                />
+              </Button.Group>
+            </Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <TableBody>
+          <Table.Row data-testid="ItemRow">
+            <Table.Cell>
+              <Label className={styles.label}>Item Name</Label>
+              {listing ? listing.itemName : "-"}
+            </Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>
+              <Label className={styles.label}>Description</Label>
+              {listing ? listing.description : "-"}
+            </Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>
+              <Label className={styles.label}>Price</Label>
+              {listing ? formattedCurrency : "-"}
+            </Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>
+              <Label className={styles.label}>Currency</Label>
+              {listing ? listing.currency : "-"}
+            </Table.Cell>
+          </Table.Row>
+        </TableBody>
+      </Table>
     </div>
   );
 };

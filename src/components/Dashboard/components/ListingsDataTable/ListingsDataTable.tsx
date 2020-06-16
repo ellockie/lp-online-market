@@ -15,49 +15,6 @@ import { Popup } from "semantic-ui-react";
   ==============================  DATA TABLE  ==============================
 */
 
-const columns = [
-  {
-    name: "Item Name",
-    selector: "itemName",
-    sortable: true,
-    width: "147px",
-    cell: (item: Listing) => (
-      <Popup
-        content={item.itemName}
-        trigger={<div>{item.itemName}</div>}
-        position="top center"
-      />
-    ),
-  },
-  {
-    name: "Description",
-    selector: "description",
-    sortable: true,
-    width: "388px",
-    cell: (item: Listing) => (
-      <Popup
-        content={item.description}
-        trigger={<div>{item.description}</div>}
-        position="top center"
-      />
-    ),
-  },
-  {
-    name: "Price",
-    selector: "price",
-    sortable: true,
-    right: true,
-    width: "100.5px",
-    format: (item: Listing) => numberFormatter(item.price),
-  },
-  {
-    name: "Currency",
-    selector: "currency",
-    sortable: true,
-    width: "80.5px",
-  },
-];
-
 const ListingsDataTable: React.FC = () => {
   const items: Listing[] = useSelector(selectUserListings);
   const dispatch = useDispatch();
@@ -75,6 +32,55 @@ const ListingsDataTable: React.FC = () => {
         backgroundColor: "#bfeae8 !important",
         color: "black",
       },
+    },
+  ];
+
+  const columns = [
+    {
+      name: "Item Name",
+      selector: "itemName",
+      sortable: true,
+      width: "147px",
+      // eslint-disable-next-line react/display-name
+      cell: (listing: Listing) => {
+        return (
+          <Popup
+            content={listing.itemName}
+            trigger={<div onClick={() => onRowClicked(listing)}>{listing.itemName}</div>}
+            position="top center"
+          />
+        );
+      },
+    },
+    {
+      name: "Description",
+      selector: "description",
+      sortable: true,
+      width: "388px",
+      // eslint-disable-next-line react/display-name
+      cell: (listing: Listing) => {
+        return (
+          <Popup
+            content={listing.description}
+            trigger={<div onClick={() => onRowClicked(listing)}>{listing.description}</div>}
+            position="top center"
+          />
+        );
+      },
+    },
+    {
+      name: "Price",
+      selector: "price",
+      sortable: true,
+      right: true,
+      width: "100.5px",
+      format: (item: Listing) => numberFormatter(item.price),
+    },
+    {
+      name: "Currency",
+      selector: "currency",
+      sortable: true,
+      width: "80.5px",
     },
   ];
 

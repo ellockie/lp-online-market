@@ -13,3 +13,7 @@
   display: block !important;
   margin-left: -20px !important;
 }
+.deleteButton {
+    margin: -5px 0 !important;
+    text-shadow: 0 0 4px white !important;;
+}
