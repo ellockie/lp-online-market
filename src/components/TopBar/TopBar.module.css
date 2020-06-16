@@ -1,17 +1,27 @@
 .navBar {
-    position: absolute;
-    height: 43px;
-    background-color: #005656;
-    top: 0;
-    width: 100%;
-    display: flex;
-    color: #0eb5b5;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 22px;
-    box-shadow: 3px 0 6px #003333;
+  position: absolute;
+  height: 43px;
+  background-color: #005656;
+  top: 0;
+  width: 100%;
+  display: flex;
+  color: #0eb5b5;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 22px;
+  box-shadow: 3px 0 6px #003333;
 }
 .ativeUser {
-    color: #bcffff;
-    padding-left: 12px;
+  color: #bcffff;
+  padding-left: 6px;
+}
+.logoutButton {
+  margin-left: 20px !important;
+  box-shadow: 0 0 0 2px teal !important;
+  color: #61ccc7 !important;
+  background-color: #00808033 !important;
+}
+.logoutButton:hover {
+  background-color: #008080 !important;
+  color: #a5f7f3 !important;
 }

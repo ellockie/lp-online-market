@@ -47,7 +47,7 @@ export const slice = createSlice({
     selectListing: (state, action: PayloadAction<Listing>) => {
       state.selectedListing = action.payload;
     },
-    setActiveUser: (state, action: PayloadAction<string>) => {
+    setActiveUser: (state, action: PayloadAction<string|null>) => {
       state.activeUser = action.payload;
     },
   },
