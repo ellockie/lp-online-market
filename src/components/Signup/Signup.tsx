@@ -8,6 +8,8 @@ import FrontLayout from "../FrontLayout/FrontLayout";
 import { User } from "../../models";
 import { saveUser, isUserAlreadyRegistered } from "../../services";
 
+import styles from "./Signup.module.css";
+
 const Signup: React.FC = () => {
   const history = useHistory();
   const [alreadyRegistered, setAlreadyRegistered] = useState<boolean>(false);
@@ -109,14 +111,9 @@ const Signup: React.FC = () => {
         </Button>
         {alreadyRegistered && (
           <Message>
-            <Message.Header style={{ color: "red" }}>
+            <Message.Header className={styles.messageHeader}>
               This user is already registered
             </Message.Header>
-            <p>
-              <small>
-                Forgot password?
-              </small>
-            </p>
           </Message>
         )}
       </Form>

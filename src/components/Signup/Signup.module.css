@@ -1,1 +1,4 @@
-.Signup {}
+.messageHeader {
+  font-size: 1em !important;
+  color: red;
+}

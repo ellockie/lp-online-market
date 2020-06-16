@@ -10,6 +10,8 @@ import { setActiveUser } from "../../store/listingsSlice";
 import { User } from "../../models";
 import { areCredentialsValid } from "../../services";
 
+import styles from "./Login.module.css";
+
 const Login: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -92,7 +94,7 @@ const Login: React.FC = () => {
         </Button>
         {wrongCredentials && (
           <Message>
-            <Message.Header style={{ color: "red" }}>
+            <Message.Header className={styles.messageHeader}>
               Wrong email or password
             </Message.Header>
             <p>
