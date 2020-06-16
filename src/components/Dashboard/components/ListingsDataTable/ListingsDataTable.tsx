@@ -8,7 +8,7 @@ import {
   selectListing,
   selectUserListing,
 } from "../../../../store/listingsSlice";
-import { currencyFormatter } from "../../../../services";
+import { numberFormatter } from "../../../../services";
 
 /*
   ==============================  DATA TABLE  ==============================
@@ -32,14 +32,14 @@ const columns = [
     selector: "price",
     sortable: true,
     right: true,
-    width: "90.5px",
-    format: (item: Listing) => currencyFormatter(item.currency)(item.price),
+    width: "100.5px",
+    format: (item: Listing) => numberFormatter(item.price),
   },
   {
     name: "Currency",
     selector: "currency",
     sortable: true,
-    width: "90.5px",
+    width: "80.5px",
   },
 ];
 
