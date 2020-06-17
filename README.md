@@ -1,5 +1,8 @@
-## On-line market
-Supports:
+## On-line marketplace
+
+Small demo application simulating a "global", unspecialised marketplace.
+
+Features:
 - user registration
 - user authentication
 - min password length + password match requirements on signup
@@ -11,6 +14,7 @@ Supports:
 - check if user is already registetered
 
 Technologies used:
+
 - React
 - React Router
 - [Redux](https://redux.js.org/)
@@ -24,9 +28,11 @@ Technologies used:
 - CSS modules
 
 Testing:
+
 - 21 unit tests
 
 To do:
+
 - data table showing all listings, not only user's (very similar component to the existing one needs to be created)
 - fetching of Forex rates (easy, fetch and update with an appropriate action)
 - making listings editable (it's very easy to launch the existing "Add new Listing" component with initial parameters)
@@ -35,10 +41,6 @@ To do:
 
 ## Screenshots
 
-- Login screen:
-
-![Login screen](./screenshots/login.png)
-
 - Listings screen:
 
 ![Listings screen](./screenshots/listings.png)
@@ -46,6 +48,10 @@ To do:
 - Add new listing screen:
 
 ![Add new listing screen](./screenshots/newListing.png)
+
+- Login screen:
+
+![Login screen](./screenshots/login.png)
 
 - Thank you for signing up screen:
 
