@@ -7,11 +7,11 @@ Features:
 - user authentication
 - min password length + password match requirements on signup
 - multitude of currencies (currently offered by fixer.io)
-- local storage of user credentials
 - user session persistence, via cookie
-- automatic redirections, based on session state
+- local storage of user credentials
 - local storage of user listings, on per-user basis
-- check if user is already registetered
+- automatic redirections, based on session state
+- centralised configuration
 
 Technologies used:
 
