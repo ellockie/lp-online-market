@@ -45,7 +45,7 @@ const ListingDetails: React.FC = () => {
       <Table className={styles.table}>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>
+            <Table.HeaderCell className={styles.tableHeader}>
               Listing Details
               <Button.Group floated="right">
                 <Popup

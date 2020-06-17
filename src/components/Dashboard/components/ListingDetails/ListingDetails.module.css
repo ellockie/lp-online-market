@@ -2,7 +2,13 @@
   padding-top: 64px;
 }
 .table td {
-    padding-left: 22px !important;
+  padding-left: 22px !important;
+}
+.tableHeader {
+  vertical-align: middle;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .label {
   background: none;
@@ -14,6 +20,6 @@
   margin-left: -20px !important;
 }
 .deleteButton {
-    margin: -5px 0 !important;
-    text-shadow: 0 0 4px white !important;;
+  margin: -5px 0 !important;
+  text-shadow: 0 0 4px white !important;
 }
