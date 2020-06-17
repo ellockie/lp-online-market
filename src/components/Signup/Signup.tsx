@@ -1,18 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form, Message } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { useSelector } from "react-redux";
 
 import FrontLayout from "../FrontLayout/FrontLayout";
 import { User } from "../../models";
 import { saveUser, isUserAlreadyRegistered } from "../../services";
+import { selectActiveUser } from "../../store/listingsSlice";
 
 import styles from "./Signup.module.css";
 
 const Signup: React.FC = () => {
   const history = useHistory();
   const [alreadyRegistered, setAlreadyRegistered] = useState<boolean>(false);
+  const activeUser: string | null = useSelector(selectActiveUser);
+
+  useEffect(() => {
+    if (activeUser) {
+      history.push("/dashboard");
+    }
+  }, [activeUser]);
+
 
   const Schema = Yup.object().shape({
     email: Yup.string().email("Must be a valid email").required("Required"),

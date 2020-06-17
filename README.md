@@ -4,8 +4,10 @@ Supports:
 - user authentication
 - min password length + password match requirements on signup
 - multitude of currencies (currently offered by fixer.io)
-- user credentials are stored locally
-- user listings also stored locally, on per-user basis
+- local storage of user credentials
+- user session persistence, via cookie
+- automatic redirections, based on session state
+- local storage of user listings, on per-user basis
 - check if user is already registetered
 
 Technologies used:
@@ -19,9 +21,10 @@ Technologies used:
 - React Data Table Component
 - Additional ESLint validation (beyond one in un-ejected React app)
 - Semantic UI framework
+- CSS modules
 
 Testing:
-- 19 unit tests
+- 21 unit tests
 
 To do:
 - data table showing all listings, not only user's (very similar component to the existing one needs to be created)

@@ -44,7 +44,7 @@ export const exampleUserListings: Listing[] = [
       id: 1,
       itemName: "Amazing Product",
       description:
-        "Prepopulated listing, only for demo purposes. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Prepopulated listing (only for demo purposes). Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       price: 123,
       currency: "GBP",
     },

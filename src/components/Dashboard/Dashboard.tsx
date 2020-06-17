@@ -41,7 +41,7 @@ const Dashboard: React.FC = () => {
         className={styles.containerNoAuth}
         data-testid="dashboard"
       >
-        Please &nbsp; <a href="/#/login">login</a> &nbsp; / &nbsp;{" "}
+        Please &nbsp; <a href="/#/login">login</a> &nbsp; or &nbsp;{" "}
         <a href="/#/signup">sign up</a> &nbsp; first
       </Container>
     );

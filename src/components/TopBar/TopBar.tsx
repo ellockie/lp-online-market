@@ -6,6 +6,7 @@ import { Button } from "semantic-ui-react";
 import { selectActiveUser, setActiveUser } from "../../store/listingsSlice";
 
 import styles from "./TopBar.module.css";
+import { setActiveUserCookie } from "../../services";
 
 const TopBar: React.FC = () => {
   const activeUser: string | null = useSelector(selectActiveUser);
@@ -19,6 +20,7 @@ const TopBar: React.FC = () => {
 
   const LogOut = () => {
     dispatch(setActiveUser(null));
+    setActiveUserCookie(null);
     history.push("/login");
   };
 

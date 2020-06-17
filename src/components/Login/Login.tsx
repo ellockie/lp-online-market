@@ -1,21 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form, Message } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { FrontLayout } from "../";
-import { setActiveUser } from "../../store/listingsSlice";
+import { setActiveUser, selectActiveUser } from "../../store/listingsSlice";
 import { User } from "../../models";
-import { areCredentialsValid } from "../../services";
+import { areCredentialsValid, setActiveUserCookie } from "../../services";
 
 import styles from "./Login.module.css";
 
 const Login: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const activeUser: string | null = useSelector(selectActiveUser);
   const [wrongCredentials, setWrongCredentials] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (activeUser) {
+      history.push("/dashboard");
+    }
+  }, [activeUser]);
 
   const Schema = Yup.object().shape({
     email: Yup.string().email("Must be a valid email").required("Required"),
@@ -38,6 +45,7 @@ const Login: React.FC = () => {
       }
       dispatch(setActiveUser(values.email));
       resetForm();
+      setActiveUserCookie(values.email);
       history.push("/dashboard");
     },
   });

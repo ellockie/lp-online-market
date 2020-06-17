@@ -1,19 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { HashRouter as Router } from "react-router-dom";
 
-import App from './App';
-import { store } from './store/store';
-import * as serviceWorker from './serviceWorker';
+import App from "./App";
+import { store } from "./store/store";
+import * as serviceWorker from "./serviceWorker";
 
-import 'semantic-ui-css/semantic.min.css'
-
+import "semantic-ui-css/semantic.min.css";
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
