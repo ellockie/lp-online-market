@@ -21,7 +21,7 @@ const Signup: React.FC = () => {
     if (activeUser) {
       history.push("/dashboard");
     }
-  }, [activeUser]);
+  }, [activeUser, history]);
 
 
   const Schema = Yup.object().shape({

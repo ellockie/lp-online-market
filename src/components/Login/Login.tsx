@@ -22,7 +22,7 @@ const Login: React.FC = () => {
     if (activeUser) {
       history.push("/dashboard");
     }
-  }, [activeUser]);
+  }, [activeUser, history]);
 
   const Schema = Yup.object().shape({
     email: Yup.string().email("Must be a valid email").required("Required"),
