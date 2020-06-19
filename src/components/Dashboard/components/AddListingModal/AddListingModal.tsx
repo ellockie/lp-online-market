@@ -81,7 +81,7 @@ const AddListingModal: React.FC = () => {
       data-testid="ModalOpenButton"
       color="teal"
     >
-      Add New Listing
+      New Listing
     </Button>
   );
 
